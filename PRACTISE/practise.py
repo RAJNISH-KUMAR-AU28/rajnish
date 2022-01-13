@@ -63,8 +63,8 @@
    
 
 
-##### TREE #########
-
+##### TREE CODE #########
+'''
 class TreeNode:
     def __init__(self, data):
         self.data = data
@@ -74,11 +74,24 @@ class TreeNode:
     def add_child(self,child):
         child.parent = self 
         self.children.append(child)
+
+    def get_level(self):
+        level = 0
+        p = self.parent
+        while p:
+            level += 1
+            p = p.parent 
+        return level         
     
     def print_tree(self):
-        print(self.data)
-        for child in self.children:
-            child.print_tree()
+        spaces = ' ' * self.get_level() * 10
+        prefix = spaces + "|__" if self.parent else ""
+        print(prefix + self.data)
+        if self.children:
+            for child in self.children:
+                child.print_tree() 
+
+  
         
 def build_product_tree():
     root = TreeNode("electronics")
@@ -112,13 +125,58 @@ if __name__ == "__main__":
     build_product_tree()
 
 
+# ####OUTPUT :-######################################### 
+# electronics
+#           |__laptop
+#                     |__hp        
+#                     |__thinkpad  
+#                     |__All in One
+#                     |__IOS       
+#           |__mobile
+#                     |__vivo      
+#                     |__oppo      
+#                     |__samsung   
+#                     |__xiaomi    
+#           |__tv
+#                     |__LG        
+#                     |__samsung
+#                     |__Mi
+#                     |__lenovo
 
-
+'''
         
 
+from logging import root
 
 
+class TreeNode:
+    def __init__(self, data):
+        self.data = data 
+        self.child = []
+        self.parent =  None
 
+    def add_child(self, child):
+        child.parent = self
+        self.children.append(child)
+
+def build_product_tree():
+    root = TreeNode("CEO")
+
+    CTO=  TreeNode("CTO")
+    CTO.add_child(TreeNode("Vishwa(Infrastructure Head"))
+    CTO.add.child(TreeNode("Dhaval(cloud manager"))
+    CTO.add_child(TreeNode("Abhit(app manager"))
+
+    Gels = TreeNode("Gels HR Head")
+    Gels.add_child(TreeNode("peter(recuritment"))
+    Gels.add.child(TreeNode("waqas(policy manager"))
+    
+    root.print.tree()
+
+if __name__ == "__main__":
+    build_product_tree    
+
+    
 
 
         
